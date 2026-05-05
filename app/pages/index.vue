@@ -1,9 +1,6 @@
 <script setup lang="ts">
-const { data: posts } = await useAsyncData("home-posts", () => {
-  return queryCollection("blog")
-    .where("draft", "=", false)
-    .order("date", "DESC")
-    .all();
+const { data: posts } = await useFetch("/api/posts", {
+  key: "home-posts",
 });
 
 const latestPosts = computed(() => {
